@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{--<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -169,4 +169,44 @@
             </div>
         </div>
     </body>
+</html>--}}
+
+    <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+</head>
+<body>
+<header>
+    <form action="#" method="POST">
+        <input type="text" class="datepicker">
+    </form>
+</header>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Konferencija</th>
+        <th>Apimtis</th>
+        <th>Data</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="active">
+        <td>Biobr</td>
+        <td>Kalbesime apie BIOBBBRR</td>
+        <td>2228-09-17</td>
+    </tr>
+    <tr>
+        <td>Kur? Va!</td>
+        <td>Kur? Va!</td>
+        <td>2002-11-10</td>
+    </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+</body>
 </html>
