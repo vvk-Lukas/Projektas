@@ -195,12 +195,12 @@
     </thead>
     <tbody>
     <tr class="active">
-        <td>Biobr</td>
+        <td>Konferencija 1</td>
         <td>Kalbesime apie BIOBBBRR</td>
         <td>2228-09-17</td>
     </tr>
     <tr>
-        <td>Kur? Va!</td>
+        <td>Konferencija 2</td>
         <td>Kur? Va!</td>
         <td>2002-11-10</td>
     </tr>
