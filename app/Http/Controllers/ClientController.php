@@ -27,14 +27,14 @@ class ClientController extends Controller
             [
                 'id' => 1,
                 'name' => 'Konferencija 1',
-                'title' => 'Aprasymas kad mum zopa',
-                'date' => '2019-01-10',
+                'title' => 'Konferencija vyks 16:00, bus kalbama apie github.',
+                'date' => '2024-11-10',
             ],
             [
                 'id' => 2,
                 'name' => 'Konferencija 2',
-                'title' => 'Aprasymas kad mum zopa222',
-                'date' => '2019-01-10',
+                'title' => 'Konferencija vyks 18:00, bus kalbama apie laravel.',
+                'date' => '2024-11-22',
             ],
         ];
 
