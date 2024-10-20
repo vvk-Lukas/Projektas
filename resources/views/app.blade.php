@@ -86,7 +86,7 @@
     </div>
     <ul>
         <li><a class="route" href="{{route('client.conferences.index')}}">Kliento posistemis</a></li>
-        <li><a href="">Darbuotojo posistemis</a></li>
+        <li><a href="{{route('employee.conferences.index')}}">Darbuotojo posistemis</a></li>
         <li><a href="">Administratoriaus posistemis</a></li>
     </ul>
 </nav>

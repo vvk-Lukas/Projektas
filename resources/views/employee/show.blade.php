@@ -1,12 +1,9 @@
 @extends('app')
 
-@section('title', $conference['name'])
+@section('title', 'Konferencijos Peržiūra')
 
 @section('content')
     <style>
-        .title {
-            padding: 30px;
-        }
         .btn {
             padding: 5px 20px;
             font-size: 16px;
@@ -24,22 +21,19 @@
             background-color: lightgray;
             color: black;
         }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        p strong {
-            font-weight: bold;
-        }
     </style>
-    <div class="title">
-    <h1>{{$conference['name']}}</h1>
-    <p><strong>Aprasymas: </strong>{{$conference['title']}}</p>
-    <p><strong>Data: </strong>{{$conference['date']}}</p>
+    <h1>{{ $conference['name'] }}</h1>
+    <p><strong>Data:</strong> {{ $conference['date'] }}</p>
+    <p><strong>Aprašymas:</strong> {{ $conference['title'] }}</p>
 
-    <a href="{{route('client.conferences.index')}}">
-        <button class="btn">Atgal</button>
-    </div>
+    <h2>Užsiregistravę klientai:</h2>
+    <ul>
+        @foreach($conference['attendees'] as $attendee)
+            <li>{{ $attendee }}</li>
+        @endforeach
+    </ul>
+
+    <a href="{{ route('employee.conferences.index') }}">
+        <button class="btn">Atgal į konferencijų sąrašą</button>
+    </a>
 @endsection
