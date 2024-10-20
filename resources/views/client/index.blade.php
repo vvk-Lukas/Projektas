@@ -3,38 +3,7 @@
 @section('title', 'Konferencijų sąrašas')
 
 @section('content')
-    <style>
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 18px;
-            text-align: left;
-        }
 
-        .btn {
-            padding: 8px 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .btn-reg {
-            background-color: green;
-        }
-
-        .btn-view {
-            background-color: darkslategray;
-        }
-
-        .btn-view:hover {
-            background-color: lightgray;
-            color: black;
-        }
-    </style>
 <h1>Konferencijos</h1>
 <div class="table">
 <table>
