@@ -35,4 +35,9 @@ class AdminConferenceController extends Controller
         return view('admin.conferences.edit', ['conference' => $conferences]);
     }
 
+    public function create()
+    {
+        return view('admin.conferences.create');
+    }
+
 }

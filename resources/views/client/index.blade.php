@@ -18,7 +18,7 @@
             <td>
                 <button class="btn btn-reg" disabled>Užsiregistruoti</button>
 
-                <a href="{{ route('client.conferences.show', ['id' => $conference['id']]) }}">
+                <a href="{{ route('client.show', ['id' => $conference['id']]) }}">
                     <button class="btn btn-view">Peržiūra</button>
                 </a>
             </td>

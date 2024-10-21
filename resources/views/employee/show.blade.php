@@ -15,7 +15,7 @@
         @endforeach
     </ul>
 
-    <a href="{{ route('employee.conferences.index') }}">
+    <a href="{{ route('employee.index') }}">
         <button class="btn btn-view">Atgal į konferencijų sąrašą</button>
     </a>
 @endsection

@@ -17,7 +17,7 @@
                 <td>{{ $conference['name'] }}</td>
                 <td>{{ $conference['date'] }}</td>
                 <td>
-                    <a href="{{ route('employee.conferences.show', ['id' => $conference['id']]) }}">
+                    <a href="{{ route('employee.show', ['id' => $conference['id']]) }}">
                         <button  class="btn btn-view">Peržiūra</button>
                     </a>
                 </td>

@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Konferencijų sąrašas</h1>
-    <a href="">
+    <a href="{{ route('admin.conferences.create') }}">
         <button class="btn btn-view">Nauja konferencija</button>
     </a>
     <table class="table">

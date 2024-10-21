@@ -9,7 +9,7 @@
     <p><strong>Aprasymas: </strong>{{$conference['title']}}</p>
     <p><strong>Data: </strong>{{$conference['date']}}</p>
 
-    <a href="{{route('client.conferences.index')}}">
+    <a href="{{route('client.index')}}">
         <button class="btn btn-view">Atgal</button>
     </div>
 @endsection
