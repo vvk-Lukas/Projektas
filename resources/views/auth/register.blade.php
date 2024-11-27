@@ -14,8 +14,11 @@
         <label for="password">Slaptažodis:</label>
         <input type="password" id="password" name="password" required><br>
 
+        <label for="password_confirmation">Patvirtinkite slaptažodį:</label>
+        <input type="password" id="password_confirmation" name="password_confirmation" required><br>
+
         <label for="role">Rolė:</label>
-        <select id="role" name="role">
+        <select id="role" name="role" required>
             <option value="client">Klientas</option>
             <option value="employee">Darbuotojas</option>
             <option value="admin">Administratorius</option>

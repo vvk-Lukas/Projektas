@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Puslapis')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 </head>
 <body>
 <nav>
     <div class="user-info">
-        <span>Lukas Zukauskas</span>
-        <button disabled>Logout</button>
+        @auth
+            <span>{{ Auth::user()->name }}</span>
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        @else
+            <span>Guest</span>
+            <a href="{{ route('login') }}">Login</a> |
+            <a href="{{ route('register') }}">Register</a>
+        @endauth
     </div>
     <ul>
         <li><a class="route" href="{{route('client.index')}}">Kliento posistemis</a></li>

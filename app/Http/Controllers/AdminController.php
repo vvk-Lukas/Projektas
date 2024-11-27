@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    // Naudotojų sąrašas (statinis masyvas)
     protected $users = [
         [
             'id' => 1,
@@ -22,23 +21,25 @@ class AdminController extends Controller
         ],
     ];
 
-    // Pagrindinis administratoriaus puslapis
     public function index()
     {
         return view('admin.index');
     }
 
     // Naudotojų sąrašas
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function usersIndex()
     {
-        $users = $this->users; // Naudojame statinį masyvą
+        $users = $this->users;
         return view('admin.users.index', ['users' => $users]);
     }
 
-    // Redagavimo puslapis
     public function editUser($id)
     {
-        $user = collect($this->users)->firstWhere('id', $id); // Randame naudotoją pagal ID
+        $user = collect($this->users)->firstWhere('id', $id);
         return view('admin.users.edit', ['user' => $user]);
     }
 
