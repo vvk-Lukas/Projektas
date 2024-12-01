@@ -23,13 +23,26 @@
         @endauth
     </div>
     <ul>
-        <li><a class="route" href="{{route('client.index')}}">Kliento posistemis</a></li>
-        <li><a href="{{route('employee.index')}}">Darbuotojo posistemis</a></li>
-        <li><a href="{{route('admin.index')}}">Administratoriaus posistemis</a></li>
+        <li><a class="route" href="{{ route('client.index') }}">Kliento posistemis</a></li>
+        <li><a href="{{ route('employee.index') }}">Darbuotojo posistemis</a></li>
+        <li><a href="{{ route('admin.index') }}">Administratoriaus posistemis</a></li>
     </ul>
 </nav>
 
 <div class="container">
+    {{-- Flash messages --}}
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @yield('content')
 </div>
 

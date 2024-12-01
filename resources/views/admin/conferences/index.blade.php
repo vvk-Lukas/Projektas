@@ -16,19 +16,18 @@
         </tr>
         @foreach($conferences as $conference)
             <tr>
-                <td>{{ $conference['id'] }}</td>
-                <td>{{ $conference['name'] }}</td>
-                <td>{{ $conference['date'] }}</td>
+                <td>{{ $conference->id }}</td>
+                <td>{{ $conference->name }}</td>
+                <td>{{ $conference->date }}</td>
                 <td>
-                    <a href="{{ route('admin.conferences.edit', $conference['id']) }}">
+                    <a href="{{ route('admin.conferences.edit', $conference->id) }}">
                         <button class="btn btn-view">Redaguoti</button>
                     </a>
-                    @if($conference['status'] !== 'ivykusi')
-                        <form style="display:inline;">
-                            @method('DELETE')
-                            <button type="submit" class="btn-view btn">Ištrinti</button>
-                        </form>
-                    @endif
+                    <form action="{{ route('admin.conferences.destroy', $conference->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-view">Ištrinti</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

@@ -2,45 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conference;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
-    public function index() {
-        $conferences = [
-        [
-            'id' => 1,
-            'name' => 'Konferencija 1',
-            'date' => '2019-01-10',
-        ],
-        [
-            'id' => 2,
-            'name' => 'Konferencija 2',
-            'date' => '2019-01-10',
-        ],
-        ];
-        return view('client.index',['conferences' => $conferences]);
+    public function index()
+    {
+        // Paimame konferencijas iš duomenų bazės
+        $conferences = Conference::where('status', 'planuojama')
+            ->orWhere('status', 'vykdoma')
+            ->orderBy('date', 'asc')
+            ->get();
+
+        return view('client.index', compact('conferences'));
     }
 
-    public function show($id) {
-        $conferences = [
-            [
-                'id' => 1,
-                'name' => 'Konferencija 1',
-                'title' => 'Konferencija vyks 16:00, bus kalbama apie github.',
-                'date' => '2024-11-10',
-            ],
-            [
-                'id' => 2,
-                'name' => 'Konferencija 2',
-                'title' => 'Konferencija vyks 18:00, bus kalbama apie laravel.',
-                'date' => '2024-11-22',
-            ],
-        ];
+    public function show($id)
+    {
+        // Rasti konkrečią konferenciją pagal ID
+        $conference = Conference::with('attendees')->findOrFail($id);
 
-        $conference = collect($conferences)->firstWhere('id', $id);
+        return view('client.show', compact('conference'));
+    }
 
+    public function register($id)
+    {
+        $user = Auth::user(); // Dabartinis prisijungęs vartotojas
+        $conference = Conference::findOrFail($id); // Patikriname, ar konferencija egzistuoja
 
-        return view('client.show',['conference' => $conference]);
+        // Patikriname, ar vartotojas jau užsiregistravo
+        if ($conference->users()->where('user_id', $user->id)->exists()) {
+            return redirect()->route('client.show', $id)
+                ->with('error', 'Jūs jau esate užsiregistravęs į šią konferenciją.');
+        }
+
+        // Pridedame vartotoją prie konferencijos
+        $conference->users()->attach($user->id);
+
+        return redirect()->route('client.show', $id)
+            ->with('success', 'Sėkmingai užsiregistravote į konferenciją.');
     }
 }

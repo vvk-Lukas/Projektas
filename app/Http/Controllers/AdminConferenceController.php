@@ -2,42 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conference;
 use Illuminate\Http\Request;
 
 class AdminConferenceController extends Controller
 {
-    protected $conferences = [
-        [
-            'id' => 1,
-            'name' => 'Konferencija 1',
-            'description' => 'Aprašymas 1',
-            'date' => '2024-10-25',
-            'status' => 'planuojama',
-            ],
-
-        [
-            'id' => 2,
-            'name' => 'Konferencija 2',
-            'description' => 'Aprašymas 2',
-            'date' => '2024-10-01',
-            'status' => 'ivykusi',
-            ]
-    ];
-
     public function index()
     {
-        return view('admin.conferences.index', ['conferences' => $this->conferences]);
-    }
-
-    public function editConference($id)
-    {
-        $conferences = collect($this->conferences)->firstWhere('id', $id); // Randame naudotoją pagal ID
-        return view('admin.conferences.edit', ['conference' => $conferences]);
+        $conferences = Conference::all(); // Paimame visas konferencijas iš DB
+        return view('admin.conferences.index', compact('conferences'));
     }
 
     public function create()
     {
         return view('admin.conferences.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+        ]);
+
+        Conference::create($request->all()); // Išsaugome naują konferenciją
+
+        return redirect()->route('admin.conferences.index')->with('success', 'Konferencija sėkmingai sukurta.');
+    }
+
+    public function edit($id)
+    {
+        $conference = Conference::findOrFail($id);
+        return view('admin.conferences.edit', compact('conference'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+        ]);
+
+        $conference = Conference::findOrFail($id);
+        $conference->update($request->all());
+
+        return redirect()->route('admin.conferences.index')->with('success', 'Konferencija atnaujinta.');
+    }
+
+    public function destroy($id)
+    {
+        $conference = Conference::findOrFail($id);
+        $conference->delete();
+
+        return redirect()->route('admin.conferences.index')->with('success', 'Konferencija ištrinta.');
     }
 
 }

@@ -3,15 +3,14 @@
 @section('title', 'Konferencijos Peržiūra')
 
 @section('content')
-    </style>
-    <h1>{{ $conference['name'] }}</h1>
-    <p><strong>Data:</strong> {{ $conference['date'] }}</p>
-    <p><strong>Aprašymas:</strong> {{ $conference['title'] }}</p>
+    <h1>{{ $conference->name }}</h1>
+    <p><strong>Data:</strong> {{ $conference->date }}</p>
+    <p><strong>Aprašymas:</strong> {{ $conference->description }}</p>
 
     <h2>Užsiregistravę klientai:</h2>
     <ul>
-        @foreach($conference['attendees'] as $attendee)
-            <li>{{ $attendee }}</li>
+        @foreach($conference->users as $user)
+            <li>{{ $user->name }}</li>
         @endforeach
     </ul>
 

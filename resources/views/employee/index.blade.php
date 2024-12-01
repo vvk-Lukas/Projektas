@@ -13,12 +13,12 @@
         </tr>
         @foreach($conferences as $conference)
             <tr>
-                <td>{{ $conference['id'] }}</td>
-                <td>{{ $conference['name'] }}</td>
-                <td>{{ $conference['date'] }}</td>
+                <td>{{ $conference->id }}</td>
+                <td>{{ $conference->name }}</td>
+                <td>{{ $conference->date }}</td>
                 <td>
-                    <a href="{{ route('employee.show', ['id' => $conference['id']]) }}">
-                        <button  class="btn btn-view">Peržiūra</button>
+                    <a href="{{ route('employee.show', ['id' => $conference->id]) }}">
+                        <button class="btn btn-view">Peržiūra</button>
                     </a>
                 </td>
             </tr>
