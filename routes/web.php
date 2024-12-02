@@ -28,7 +28,6 @@ Route::prefix('admin')->middleware(['auth', RoleMiddleware::class . ':admin'])->
     Route::get('/users', [AdminController::class, 'usersIndex'])->name('admin.users.index');
     Route::get('/users/{id}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
 
-    // Konferencijų maršrutai
     Route::get('/conferences', [AdminConferenceController::class, 'index'])->name('admin.conferences.index');
     Route::get('/conferences/create', [AdminConferenceController::class, 'create'])->name('admin.conferences.create');
     Route::post('/conferences', [AdminConferenceController::class, 'store'])->name('admin.conferences.store');

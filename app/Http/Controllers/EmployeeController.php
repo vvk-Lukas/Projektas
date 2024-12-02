@@ -16,7 +16,7 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        $conference = Conference::with('users')->findOrFail($id); // Užkrauname konferenciją su dalyviais
+        $conference = Conference::with('users')->findOrFail($id);
         return view('employee.show', ['conference' => $conference]);
     }
 }

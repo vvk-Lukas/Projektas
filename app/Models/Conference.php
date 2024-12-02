@@ -29,7 +29,7 @@ class Conference extends Model
     public function getStatusAttribute()
     {
         $currentDate = now();
-        return $this->date < $currentDate ? 'įvykusi' : 'planuojama';
+        return $this->date < $currentDate ? 'ivykusi' : 'planuojama';
     }
 }
 
