@@ -25,5 +25,11 @@ class Conference extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function getStatusAttribute()
+    {
+        $currentDate = now();
+        return $this->date < $currentDate ? 'įvykusi' : 'planuojama';
+    }
 }
 

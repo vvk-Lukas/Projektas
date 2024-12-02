@@ -9,7 +9,6 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        // Paimame visas konferencijas
         $conferences = Conference::orderBy('date', 'asc')->get();
 
         return view('employee.index', compact('conferences'));
@@ -17,7 +16,6 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        // Rasti konkrečią konferenciją pagal ID
         $conference = Conference::with('users')->findOrFail($id); // Užkrauname konferenciją su dalyviais
         return view('employee.show', ['conference' => $conference]);
     }

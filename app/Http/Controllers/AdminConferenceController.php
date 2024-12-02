@@ -9,7 +9,14 @@ class AdminConferenceController extends Controller
 {
     public function index()
     {
-        $conferences = Conference::all(); // Paimame visas konferencijas iš DB
+        $conferences = Conference::all()->map(function ($conference) {
+            if ($conference->date < now() && $conference->status === 'planuojama') {
+                $conference->status = 'įvykusi';
+                $conference->save();
+            }
+            return $conference;
+        });
+
         return view('admin.conferences.index', compact('conferences'));
     }
 
@@ -26,7 +33,7 @@ class AdminConferenceController extends Controller
             'date' => 'required|date',
         ]);
 
-        Conference::create($request->all()); // Išsaugome naują konferenciją
+        Conference::create($request->all());
 
         return redirect()->route('admin.conferences.index')->with('success', 'Konferencija sėkmingai sukurta.');
     }

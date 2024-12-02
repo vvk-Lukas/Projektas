@@ -88,7 +88,12 @@ nav ul li button {
 }
 
 .btn-reg {
-    background-color: green;
+    background-color: #1f3a3a;
+}
+
+.btn-reg:hover {
+    background-color: lightgray;
+    color: black;
 }
 
 .btn-view {
@@ -126,6 +131,8 @@ label {
 
 input[type="text"],
 input[type="date"],
+input[type="email"],
+input[type="password"],
 textarea {
     width: 100%;
     padding: 10px;

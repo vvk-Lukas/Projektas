@@ -10,9 +10,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        // Paimame konferencijas iš duomenų bazės
-        $conferences = Conference::where('status', 'planuojama')
-            ->orWhere('status', 'vykdoma')
+        $conferences = Conference::where('date', '>=', now())
             ->orderBy('date', 'asc')
             ->get();
 
@@ -21,7 +19,6 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        // Rasti konkrečią konferenciją pagal ID
         $conference = Conference::with('attendees')->findOrFail($id);
 
         return view('client.show', compact('conference'));
@@ -29,16 +26,14 @@ class ClientController extends Controller
 
     public function register($id)
     {
-        $user = Auth::user(); // Dabartinis prisijungęs vartotojas
-        $conference = Conference::findOrFail($id); // Patikriname, ar konferencija egzistuoja
+        $user = Auth::user();
+        $conference = Conference::findOrFail($id);
 
-        // Patikriname, ar vartotojas jau užsiregistravo
         if ($conference->users()->where('user_id', $user->id)->exists()) {
             return redirect()->route('client.show', $id)
                 ->with('error', 'Jūs jau esate užsiregistravęs į šią konferenciją.');
         }
 
-        // Pridedame vartotoją prie konferencijos
         $conference->users()->attach($user->id);
 
         return redirect()->route('client.show', $id)
