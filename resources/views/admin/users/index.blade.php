@@ -11,18 +11,14 @@
             <th>ID</th>
             <th>Vardas</th>
             <th>El. paštas</th>
-            <th>Veiksmai</th>
+            <th>Naudotojo tipas</th>
         </tr>
         @foreach($users as $user)
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>
-                    <a href="{{ route('admin.users.edit', $user->id) }}">
-                        <button class="btn btn-view">Redaguoti</button>
-                    </a>
-                </td>
+                <td>{{ $user->role }}</td>
             </tr>
         @endforeach
     </table>
